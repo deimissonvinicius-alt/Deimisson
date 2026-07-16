@@ -26,7 +26,6 @@ const weltYang = {
     raridade: "S-Rank",
     elemento: "Física",
     tipo: "Ataque",
-    origem: "Realidade Alternativa",
     organização: "Anti-Entropy",
     
     descricao: "Welt Yang é o Herrscher of Reason, um ser lendário com poder imenso. Ele é estratégico, inteligente e possuiu um profundo senso de responsabilidade pela humanidade.",
@@ -39,33 +38,6 @@ const weltYang = {
         critico: 75,
         resistencia: 90
     },
-    
-    habilidades: [
-        {
-            nome: "Manipulação de Gravidade",
-            descricao: "Welt Yang pode manipular campos gravitacionais para imobilizar inimigos",
-            icone: "🌀",
-            poder: 95
-        },
-        {
-            nome: "Ataque Mecânico",
-            descricao: "Seus ataques geram explosões de energia mecânica devastadora",
-            icone: "⚡",
-            poder: 98
-        },
-        {
-            nome: "Campo de Razão",
-            descricao: "Cria um campo protetor que amplifica ataques de aliados",
-            icone: "🛡️",
-            poder: 85
-        },
-        {
-            nome: "Manipulação do Tempo",
-            descricao: "Influência sobre a dimensão temporal para estratégias únicas",
-            icone: "⏰",
-            poder: 92
-        }
-    ],
     
     frases: [
         "A Razão é a ferramenta mais poderosa que temos.",
@@ -106,6 +78,52 @@ const curiosidades = [
 
 // Funções de Interatividade
 
+function renderizarDadosWeltYang() {
+    const container = document.getElementById("personagemConteudo");
+
+    if (!container) return;
+
+    const statsHtml = Object.entries(weltYang.stats)
+        .map(([stat, valor]) => `<li><strong>${stat.charAt(0).toUpperCase() + stat.slice(1)}:</strong> ${valor}</li>`)
+        .join("");
+
+    const frase = weltYang.frases[Math.floor(Math.random() * weltYang.frases.length)];
+
+    container.innerHTML = `
+        <div class="personagem-card">
+            <h3>${weltYang.nome}</h3>
+            <p><strong>Título:</strong> ${weltYang.titulo}</p>
+            <p><strong>Raridade:</strong> ${weltYang.raridade}</p>
+            <p><strong>Elemento:</strong> ${weltYang.elemento}</p>
+            <p><strong>Descrição:</strong> ${weltYang.descricao}</p>
+
+            <h4>Stats</h4>
+            <ul>${statsHtml}</ul>
+
+            <h4>Frase de Welt</h4>
+            <blockquote>${frase}</blockquote>
+        </div>
+    `;
+}
+
+function renderizarCalculosWeltYang() {
+    const container = document.getElementById("calculosConteudo");
+
+    if (!container) return;
+
+    const poderTotal = calcularPoderTotal();
+    const forcaCombate = calcularForcaCombate();
+
+    container.innerHTML = `
+        <div class="personagem-card">
+            <h3>Resumo de Cálculos</h3>
+            <p><strong>Poder Total:</strong> ${poderTotal}</p>
+            <p><strong>Força de Combate:</strong> ${forcaCombate}</p>
+            <p><strong>Quantidade de Stats:</strong> ${Object.keys(weltYang.stats).length}</p>
+        </div>
+    `;
+}
+
 // Função para exibir informações do personagem no console
 function exibirInfoWeltYang() {
     console.log("=== WELT YANG - HERRSCHER OF REASON ===");
@@ -114,7 +132,6 @@ function exibirInfoWeltYang() {
     console.log(`Raridade: ${weltYang.raridade}`);
     console.log(`Elemento: ${weltYang.elemento}`);
     console.log(`Tipo: ${weltYang.tipo}`);
-    console.log(`Origem: ${weltYang.origem}`);
     console.log("\n--- Stats ---");
     Object.entries(weltYang.stats).forEach(([stat, valor]) => {
         console.log(`${stat.charAt(0).toUpperCase() + stat.slice(1)}: ${valor}`);
@@ -227,6 +244,8 @@ console.log("- filtrarHabilidadesPorPoder(poder)");
 console.log("- adicionarHabilidade(nome, descricao, icone, poder)");
 
 // Executar demonstração
+renderizarDadosWeltYang();
+renderizarCalculosWeltYang();
 exibirResumoBatalha();
 console.log("\n---\n");
 listarHabilidades();
