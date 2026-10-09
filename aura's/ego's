@@ -1,1 +1,5 @@
 console.log("auras egos") 
+let mamão = prompt
+if(mamão = "mamão"){
+    console.log("macaco")
+}
