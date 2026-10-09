@@ -3,3 +3,5 @@ let mamão = prompt
 if(mamão = "mamão"){
     console.log("macaco")
 }
+
+console.log("nova funcionalidade legal");
